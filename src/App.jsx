@@ -1,6 +1,6 @@
 // App.jsx
 import React, { useEffect, useState } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'; // ❌ No HashRouter or BrowserRouter here
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -39,7 +39,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <>
       <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -51,7 +51,7 @@ function App() {
         <Route path="/donation/:id" element={<DonationDetail />} />
         <Route path="/donation/:id/location" element={<DonationLocation />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
