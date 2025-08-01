@@ -1,6 +1,6 @@
 // App.jsx
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -16,13 +16,11 @@ function App() {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
 
-  // Check login status on mount
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
       setIsLoggedIn(true);
-      // You can also fetch user details here if needed
     }
   }, []);
 
@@ -41,7 +39,7 @@ function App() {
   };
 
   return (
-    <>
+    <Router>
       <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -53,7 +51,7 @@ function App() {
         <Route path="/donation/:id" element={<DonationDetail />} />
         <Route path="/donation/:id/location" element={<DonationLocation />} />
       </Routes>
-    </>
+    </Router>
   );
 }
 
